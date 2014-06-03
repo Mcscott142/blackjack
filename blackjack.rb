@@ -1,74 +1,61 @@
-class Card #create card with suit type and value
-  attr_reader :rank, :suit
-  def initialize(rank, suit)
-    @rank = rank
-    @suit = suit
-  end
-
-  def face_card?
-    ['J', 'Q', 'K'].include?(@rank)
-  end
-
-  def value
-    if self.face_card?
-      10
-
-     elsif self.rank =='A'
-      11 #|| 1
-
-    else
-      self.rank.to_i
-    end
-  end
-end
+require_relative 'card'
+require_relative 'point_system'
+require_relative 'deck'
+require_relative 'hand'
 
 
-SUITS = ['♠','♥','♦','♣']
-VALUES = ['2','3','4','5','6','7','8','9','10','J','Q','K','A']
+respone = nil
 
-class Deck #build deck of 52 cards and deal cards from deck
-  attr_reader :deck_of_cards
+puts "Welcome to Blackjack!"
 
-  def initialize
-    @deck_of_cards =[]
-
-    SUITS.each do |suit|
-      VALUES.each do |value|
-         @deck_of_cards << Card.new(value, suit)
-       end
-     end
-
-     @deck_of_cards.shuffle!
-   end
-
-  def deal
-    @deck_of_cards.pop
-  end
-end
-
-
-class Hand # calculate score of hand, hit, stay, win, push or bust
-  attr_reader :collection
-  def initialize(collection)
-    @collection = collection
-  end
-
-  def score
-    # add score here
-    score = 0
-    collection.each do |card|
-     puts card.rank
-     score += card.value
-    end
-    score
-  end
-end
 
 deck = Deck.new
 
-card_1 = deck.deal
-card_2 = deck.deal
+player_card_1 = deck.deal
+player_card_2 = deck.deal
 
-hand = Hand.new([card_1, card_2])
-puts hand.score
+player_hand = Hand.new([player_card_1, player_card_2])
+
+player_hand.show
+puts "Player Score: #{player_hand.score}"
+
+  if player_hand.score == 21
+    puts "Winner! Blackjack!! Way to Go!!"
+  else
+    player_hand.score < 21
+    puts "Hit or Stand (H/S):"
+    response = gets.chomp
+  end
+
+
+  if response == "H"
+  player_hand.hit(deck.deal)
+
+  elsif response == "S"
+  puts "Your Score: #{player_hand.score}"
+
+  else
+    puts "Please respond with H or S:"
+  end
+
+
+
+
+
+
+# dealer_card_1 = deck.deal
+# dealer_card_2 = deck.deal
+#dealer_hand = Hand.new([dealer_card_1, dealer_card_2])
+#puts "Dealer Score: #{dealer_hand.score}"
+
+# if player_hand.score > dealer_hand.score
+#   puts "Player wins!!"
+
+# elsif player_hand.score == dealer_hand.score
+#   puts "Push :|"
+
+# else
+#   puts "House wins :("
+
+# end
 
