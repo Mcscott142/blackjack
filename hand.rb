@@ -6,7 +6,7 @@ class Hand # calculate score of hand, hit, stay, win, push or bust
 
   def show
     collection.each do |card|
-     puts "#{card.rank}#{card.suit}"
+     puts "Player Dealt: #{card.rank}#{card.suit}"
     end
   end
 
@@ -19,11 +19,10 @@ class Hand # calculate score of hand, hit, stay, win, push or bust
     score
   end
 
-
-
-  def hit()# want to pass in deck.deal to add new card
-    score += PointSystem.new(card).value #card has no value yet
-    end
+  def hit(deck)
+  card = deck.deal
+  collection << card
   end
 
 end
+

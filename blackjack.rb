@@ -9,34 +9,63 @@ respone = nil
 puts "Welcome to Blackjack!"
 
 
+def player_deal
 deck = Deck.new
+player_hand = Hand.new([deck.deal, deck.deal])
 
-player_card_1 = deck.deal
-player_card_2 = deck.deal
+ player_hand.show
+ puts "Player Score: #{player_hand.score}"
 
-player_hand = Hand.new([player_card_1, player_card_2])
+  if player_hand.score < 21
+    print "Hit or Stand (H/S):"
+    response = gets.chomp.upcase
 
-player_hand.show
-puts "Player Score: #{player_hand.score}"
+    if response == 'H'
+      player_hand.hit(deck)
+      player_hand.show
+      puts "Player Score: #{player_hand.score}"
+    elsif response == 'S'
+      puts "Player stays with #{player_hand.score}"
 
-  if player_hand.score == 21
-    puts "Winner! Blackjack!! Way to Go!!"
-  else
-    player_hand.score < 21
-    puts "Hit or Stand (H/S):"
-    response = gets.chomp
+    else
+      "Please respond with H or S:"
+    end
   end
+end
 
 
-  if response == "H"
-  player_hand.hit(deck.deal)
+player_deal
 
-  elsif response == "S"
-  puts "Your Score: #{player_hand.score}"
 
-  else
-    puts "Please respond with H or S:"
-  end
+
+
+
+# player_hand.show
+# puts "Player Score: #{player_hand.score}"
+
+
+#   #if player_hand.score == 21
+#   #   puts "Winner! Blackjack!! Way to Go!!"
+#   # else
+#     player_hand.score < 21
+#     puts "Hit or Stand (H/S):"
+#     response
+
+#     if response == "H"
+#       player_hand.hit(deck)
+#       player_hand.show
+#       puts "Player Score: #{player_hand.score}"
+#     elsif response == "S"
+#     puts "Your Score: #{player_hand.score}"
+
+#     else
+#       puts "Please respond with H or S:"
+#       player_deal
+#     end
+#   end
+# end
+
+# player_deal
 
 
 
