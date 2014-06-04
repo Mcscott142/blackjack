@@ -6,8 +6,12 @@ require_relative 'hand'
 
 respone = nil
 
-puts "Welcome to Blackjack!"
 
+
+def hit_player
+  puts "Player dealt: #{@player_hand.hit(@deck)}"
+  puts "Player Score: #{@player_hand.score}"
+end
 
 def game_start
 @deck = Deck.new #can I tie this in to dealer_hand?
@@ -21,10 +25,7 @@ def game_start
     response = gets.chomp.upcase
 
     if response == 'H'
-      @player_hand.hit(@deck)
-      @player_hand.player_show
-      puts "Player Score: #{@player_hand.score}"
-
+      hit_player
     elsif response == 'S'
       puts "Player stays with #{@player_hand.score}"
       break
@@ -52,15 +53,15 @@ def dealers_turn
   puts "Dealer Score: #{@dealer_hand.score}"
 
   while @dealer_hand.score < 17
-    @dealer_hand.hit(@deck)
-    @dealer_hand.dealer_show
+    puts "Dealer dealt: #{@dealer_hand.hit(@deck)}"
+
   end
 
   if @dealer_hand.score >= 17 && @dealer_hand.score < 22
     puts "Dealer Stands at #{@dealer_hand.score}"
     winner?
   else
-    puts "Dealer busts, Player wins!!"
+    puts "Dealer Score:#{@dealer_hand.score} Too Many!, Player wins!!"
   end
 end
 
@@ -74,7 +75,7 @@ def winner?
   end
 end
 
-
+puts "Welcome to Blackjack!"
 game_start
 
 

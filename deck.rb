@@ -15,6 +15,6 @@ class Deck #build deck of 52 cards and deal cards from deck
    end
 
   def deal
-    @deck_of_cards.pop
+    @deck_of_cards.pop#pull suit & rank here? I want only the pop value
   end
 end

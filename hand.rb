@@ -4,7 +4,7 @@ class Hand # calculate score of hand, hit, stay, win, push or bust
     @cards = cards
   end
 
-  def player_show
+  def player_show #How do I show 1 card at a time?
     cards.each do |card|
      puts "Player Dealt: #{card.rank}#{card.suit}"
     end
@@ -12,8 +12,9 @@ class Hand # calculate score of hand, hit, stay, win, push or bust
 
   def dealer_show
     cards.each do |card|
-     puts "Dealer Dealt: #{card.rank}#{card.suit}"
+     puts "Dealer Dealt: #{card.rank}#{card.suit}"#How do I only show 1 card for the hit?
     end
+
   end
 
   def score
@@ -23,7 +24,7 @@ class Hand # calculate score of hand, hit, stay, win, push or bust
   def hit(deck)
     card = deck.deal
     cards << card
-
+    "#{card.rank}#{card.suit}"
   end
 
 end
