@@ -11,4 +11,8 @@ class Card #create card with suit type and value
     ['J', 'Q', 'K'].include?(@rank)
   end
 
+  def ace?
+    ['A'].include?(@rank)
+  end
+
 end

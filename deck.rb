@@ -1,3 +1,4 @@
+#require_relative 'card'
 class Deck #build deck of 52 cards and deal cards from deck
   attr_reader :deck_of_cards
 
