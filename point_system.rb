@@ -21,9 +21,9 @@ class PointSystem
       #11 #unless @hand.score += 11 <= 21 then 1
       else
         if running_total + 11 > 21
-          running_total += 1
+           running_total += 1
         else
-          running_total += 11
+           running_total += 11
         end
       end
     end

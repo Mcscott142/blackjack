@@ -28,12 +28,12 @@ def game_start
     elsif response == 'S'
       puts "Player stays with #{@player_hand.score}"
       break
-
     end
   end
 
   if @player_hand.score == 21
     puts "Player Has 21"
+
   end
 
   if @player_hand.score > 21

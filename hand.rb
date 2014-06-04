@@ -23,6 +23,7 @@ class Hand # calculate score of hand, hit, stay, win, push or bust
   def hit(deck)
     card = deck.deal
     cards << card
+
   end
 
 end
